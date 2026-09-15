@@ -1,0 +1,23 @@
+Last login: Fri Aug 21 13:36:46 on ttys001
+borisargirov@MacBook-Pro-van-Boris ~ % cd /Users/borisargirov/Desktop/DjangoBasics2
+borisargirov@MacBook-Pro-van-Boris DjangoBasics2 % touch .gitignore
+borisargirov@MacBook-Pro-van-Boris DjangoBasics2 % open -e .gitignore
+borisargirov@MacBook-Pro-van-Boris DjangoBasics2 % .venv/
+  venv/
+  __pycache__/
+  *.py[cod]
+  .env
+  .idea/
+  .DS_Store
+  db.sqlite3
+
+
+
+
+
+
+
+
+
+
+
