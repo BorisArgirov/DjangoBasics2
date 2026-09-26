@@ -1,0 +1,16 @@
+{% load review_extras %}
+<article class="card my-3">
+    <div class="card-body">
+        <h3 class="h6">{{ review.author|default:"Anonymous"|title }}</h3>
+        <p class="small"><a href="{% url 'books:book-details' review.book.slug %}">{{ review.book.title }}</a></p>
+        <p><span class="rating-stars" aria-label="{{ review.rating }} out of 5">{{ review.rating|stars }}</span>
+            <span class="small">{{ review.rating|floatformat:2 }} / 5</span></p>
+        {% if detailed %}
+            <div>{{ review.body|linebreaksbr }}</div>
+        {% else %}
+            <p>{{ review.body|truncatewords:20 }}</p>
+        {% endif %}
+        <p class="small text-secondary mt-3">{{ review.created_at|date:"d M Y, H:i" }}</p>
+        <a href="{% url 'reviews:review-details' review.pk %}">Read review</a>
+    </div>
+</article>

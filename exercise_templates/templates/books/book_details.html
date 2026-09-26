@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<div class="row g-4">
+    <div class="col-md-5">{% include 'books/_book_card.html' with detailed=True %}</div>
+    <div class="col-md-7">
+        <h2 class="h4">Book information</h2>
+        <dl class="row">
+            <dt class="col-sm-4">ISBN</dt><dd class="col-sm-8">{{ book.isbn }}</dd>
+            <dt class="col-sm-4">Published</dt><dd class="col-sm-8">{{ book.publishing_date|date:"d F Y" }}</dd>
+            <dt class="col-sm-4">Last updated</dt><dd class="col-sm-8">{{ book.updated_at|date:"d M Y, H:i" }}</dd>
+        </dl>
+        <h2 class="h4 mt-4">{{ reviews|length }} Review{{ reviews|length|pluralize }}</h2>
+        {% for review in reviews %}
+            {% include 'reviews/_review_card.html' %}
+        {% empty %}<p>This book has no reviews yet.</p>{% endfor %}
+    </div>
+</div>
+{% endblock %}

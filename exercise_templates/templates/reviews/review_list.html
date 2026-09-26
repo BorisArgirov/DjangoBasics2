@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load book_extras %}
+{% block page_content %}
+<p class="text-secondary">The latest {{ reviews|length }} review{{ reviews|length|pluralize }} (up to 10).</p>
+<div class="row g-4">
+    {% for review in reviews %}
+        <div class="col-md-6">{% include 'reviews/_review_card.html' %}</div>
+    {% empty %}<p>No reviews yet.</p>{% endfor %}
+</div>
+<section class="mt-5">
+    <h2 class="mb-4">Featured books</h2>
+    {% featured_books count=3 %}
+</section>
+{% endblock %}

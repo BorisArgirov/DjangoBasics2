@@ -1,0 +1,4 @@
+<h2 class="h4">Latest reviews</h2>
+{% for review in recent_reviews %}
+    {% include 'reviews/_review_card.html' %}
+{% empty %}<p>No reviews yet.</p>{% endfor %}

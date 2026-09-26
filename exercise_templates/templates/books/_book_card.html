@@ -1,0 +1,30 @@
+{% load static %}
+<article class="card h-100 shadow-sm">
+    {% if book.image_url %}
+        <img class="card-img-top book-cover" src="{{ book.image_url }}" alt="Cover of {{ book.title }}" loading="lazy">
+    {% else %}
+        <img class="card-img-top book-cover" src="{% static 'books/images/default-cover.svg' %}" alt="Default book cover" loading="lazy">
+    {% endif %}
+    <div class="card-body d-flex flex-column">
+        <p class="small text-secondary mb-1">{{ book.get_genre_display|upper }}</p>
+        <h2 class="h5"><a href="{% url 'books:book-details' book.slug %}">{{ book.title }}</a></h2>
+        <p class="small text-secondary">Shelf label: {{ book.title|truncatechars:10|upper }}</p>
+        {% if book.average_rating > 4.50 and book.review_count > 0 %}
+            <p><span class="badge text-bg-success">⭐ Top Rated</span></p>
+        {% elif book.review_count == 0 or not book.average_rating %}
+            <p><span class="badge text-bg-secondary">No reviews yet</span></p>
+        {% else %}
+            <p><span class="badge text-bg-primary">Reader rated</span></p>
+        {% endif %}
+        {% if detailed %}
+            <div>{{ book.description|default:"No description available."|linebreaksbr }}</div>
+        {% else %}
+            <p>{{ book.description|default:"No description available."|truncatewords:3 }}</p>
+        {% endif %}
+        <p class="mt-3">{{ book.review_count }} Review{{ book.review_count|pluralize }}
+            {% if book.review_count > 0 %}&middot; {{ book.average_rating|floatformat:2 }} / 5{% endif %}
+        </p>
+        {% if book.price < 15 %}<p class="small text-success">Under 15 &mdash; a budget-friendly read.</p>{% endif %}
+        <p class="fw-bold mt-auto mb-0">Price: {{ book.price|floatformat:3 }}</p>
+    </div>
+</article>

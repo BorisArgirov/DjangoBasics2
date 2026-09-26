@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load book_extras %}
+{% block page_heading %}
+<section class="hero p-4 p-md-5 rounded-4 mb-5">
+    <p class="text-uppercase small">Welcome to Book Corner</p>
+    <h1 class="display-5">A new story starts here.</h1>
+    {# Only this developer-written HTML message uses safe. #}
+    <p class="lead">{{ welcome_message|safe }}</p>
+    <a class="btn btn-dark" href="{% url 'books:book-list' %}">Explore books</a>
+</section>
+{% endblock %}
+{% block page_content %}
+<div class="row g-4">
+    <div class="col-lg-9">
+        <h2 class="mb-4">Readers' top three</h2>
+        <div class="row g-4">
+            {% for book in top_books %}
+                <div class="col-md-6 col-xl-4">{% include 'books/_book_card.html' %}</div>
+            {% empty %}<p>No rated books yet. Explore the collection to find your next read.</p>{% endfor %}
+        </div>
+        <h2 class="mt-5">Recently published</h2>
+        {% recent_books as latest_books %}
+        <ul class="list-group mt-3">
+            {% for book in latest_books %}
+                <li class="list-group-item d-flex flex-wrap justify-content-between gap-2">
+                    <a href="{% url 'books:book-details' book.slug %}">{{ book.title }}</a>
+                    <span>{{ book.publishing_date|date:"d M Y" }}</span>
+                </li>
+            {% empty %}<li class="list-group-item">No books available yet.</li>{% endfor %}
+        </ul>
+    </div>
+    <aside class="col-lg-3" aria-label="Recent reviews">
+        {% include 'reviews/_recent_reviews.html' %}
+    </aside>
+</div>
+{% endblock %}

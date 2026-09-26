@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block page_content %}
+<p class="text-secondary">{{ books|length }} book{{ books|length|pluralize }} in the collection.</p>
+<div class="row g-4">
+    {% for book in books %}
+        <div class="col-sm-6 col-lg-4">{% include 'books/_book_card.html' %}</div>
+    {% empty %}<p>No books available yet.</p>{% endfor %}
+</div>
+{% endblock %}

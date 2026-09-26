@@ -1,0 +1,5 @@
+<div class="row g-4">
+    {% for book in books %}
+        <div class="col-sm-6 col-lg-4">{% include 'books/_book_card.html' %}</div>
+    {% empty %}<p>No rated books to feature yet.</p>{% endfor %}
+</div>

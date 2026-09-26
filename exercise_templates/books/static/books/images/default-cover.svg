@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600">
+<rect width="400" height="600" fill="#e1ece5"/>
+<rect x="100" y="165" width="200" height="260" rx="12" fill="#246454"/>
+<path d="M125 165v260M155 235h110M155 265h85" stroke="#e1ece5" stroke-width="7"/>
+<text x="200" y="490" text-anchor="middle" fill="#24332f" font-family="sans-serif" font-size="24">Book Corner</text>
+</svg>
