@@ -2,8 +2,16 @@
 {% block page_content %}
 <p class="text-secondary">{{ books|length }} book{{ books|length|pluralize }} in the collection.</p>
 <div class="row g-4">
+    <form>
+        <div class="input-group">
+            <input name="query" class="form-control" placeholder="Search for book" value={{ request.GET.query }}>
+            <div class="input-goup-append ms-2">
+                <button class="btn btn-outline-secondary">Search</button>
+            </div>
+        </div>
+    </form>
     {% for book in books %}
-        <div class="col-sm-6 col-lg-4">{% include 'books/_book_card.html' %}</div>
+        <div class="col-sm-6 col-lg-4 mt-4">{% include 'books/_book_card.html' %}</div>
     {% empty %}<p>No books available yet.</p>{% endfor %}
 </div>
 {% endblock %}

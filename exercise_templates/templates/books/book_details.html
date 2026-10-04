@@ -3,7 +3,13 @@
 <div class="row g-4">
     <div class="col-md-5">{% include 'books/_book_card.html' with detailed=True %}</div>
     <div class="col-md-7">
-        <h2 class="h4">Book information</h2>
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-3 mb-4">
+            <h2 class="h4 mb-0">Book information</h2>
+            <div class="d-flex flex-wrap gap-2" role="group" aria-label="Book actions">
+                <a class="btn btn-primary" href="{% url 'books:edit' book.slug %}">Edit Book</a>
+                <a class="btn btn-outline-danger" href="{% url 'books:delete' book.slug %}">Delete Book</a>
+            </div>
+        </div>
         <dl class="row">
             <dt class="col-sm-4">ISBN</dt><dd class="col-sm-8">{{ book.isbn }}</dd>
             <dt class="col-sm-4">Published</dt><dd class="col-sm-8">{{ book.publishing_date|date:"d F Y" }}</dd>
